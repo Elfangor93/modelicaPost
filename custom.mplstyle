@@ -1,0 +1,35 @@
+# file: manuel.mplstyle
+# author: Manuel Häsuler
+# description: style sheet for Matplotlib figures.
+#
+# Color palette from:
+# http://colorbrewer2.org/#type=qualitative&scheme=Set1&n=8
+
+
+font.family : sans-serif
+font.sans-serif: CMU Sans Serif, Latin Modern Sans, Calibri, sans-serif
+
+axes.facecolor : fafafa
+axes.edgecolor: eeeeee
+axes.prop_cycle : cycler('color',['e41a1c', '377eb8', '4daf4a', '984ea3', 'ff7f00', 'a65628', 'fd3cc0', '29e9be', '75e629', '383838'])
+axes.linewidth : 1.0
+axes.grid : True
+axes.titlesize: 18
+axes.labelsize: 12
+axes.labelweight: bold
+
+lines.linewidth : 2.0
+
+xtick.direction : in
+ytick.direction : in
+
+grid.color : 5b5b5b
+grid.linestyle : --
+grid.linewidth : 0.4
+
+legend.fancybox : True
+legend.loc : upper center
+
+text.hinting_factor : 8
+
+mathtext.fontset : cm
