@@ -6,7 +6,7 @@
 # date:         July 2019
 # author:       Manuel Häusler
 # email:        manuel.haeusler@hslu.ch
-# version:      0.2
+# version:      1.0
 #==============================================================================
 
 
@@ -17,7 +17,8 @@ class plotter:
     def __init__(self):
         self.delete = False
 
-        # variables to plot   //   provide them as a dictionary {'label': {'matFile': matfile-path, 'path': path_inside_matfile, 'origUnit': simulation_unit, 'displayUnit': unit_to_display}, 'label2': {}, ...}
+        # variables to plot
+        # provide them as a dictionary {'label': {'matFile': matfile-path, 'path': path_inside_matfile, 'origUnit': simulation_unit, 'displayUnit': unit_to_display}, 'label2': {}, ...}
         self.variables = {}
 
         # stylesheet
