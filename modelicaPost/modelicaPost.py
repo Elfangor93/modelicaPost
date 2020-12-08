@@ -232,9 +232,9 @@ class plotter:
     def save(self, path=''):
         if (self.delete == True):
             return
-        if (path != ''):
+        if (path == ''):
             print('Gib den Dateinamen des zu speichernden Plot-Images ein.')
-            fileName = path + raw_input() + '.svg'
+            fileName = raw_input() + '.svg'
         else:
             fileName = path + '.svg'
         plt = self.plot()
