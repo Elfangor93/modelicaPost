@@ -29,7 +29,7 @@ Um auf die Funktionalitäten von modelicaPost zugreifen zu können ist folgende 
    
 ## Verwendung
 modelicaPost kann direkt in der Kommandozeile oder innerhalb eines Python-Scripts verwendet werden. Das Vorgehen ist immer das selbe:
-1. Initialisieren einer neuen Instanz der gewünschten Klasse (Beispiel: `lp = modelicaPost.linePlot` )
+1. Initialisieren einer neuen Instanz der gewünschten Klasse (Beispiel: `lp = modelicaPost.linePlot()` )
 2. Erfassen der auszuwertenden Variablen
 3. Einstellungen für die Ausgaben tätigen
 4. Ausgabe generieren lassen

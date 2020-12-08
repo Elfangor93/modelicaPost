@@ -68,6 +68,21 @@ class plotter:
         print('Dies ist die Base-Class fuer alle Plotter-Klassen. Verfuegbare Plotter-Klassen sind: linePlot, piePlot, stackPlot')
         return
 
+    # Methode, um ein Resultat-File (Variablen-Struktur) zu untersuchen
+    def showRes(self, file=''):
+        if (file == ''):
+            print('Kein .mat-File angegeben. Welches .mat-File soll untersucht werden? (Pfad zum .mat-File angeben)')
+            file = raw_input()
+
+        from modelicares import SimRes
+        r = SimRes(file)
+
+        try:
+            print(r.names)
+        except IOError:
+            print('Das angegebene .mat-File scheint es nicht zu geben. Funktion "showRes()" wird beendet...')
+            return
+
     # Methode, um neue Modelica-Variablen hinzuzufügen
     def add(self):
         if (self.delete == True):
@@ -262,6 +277,7 @@ class linePlot(plotter):
         txt = txt + 'modelicaPost.linePlot ist eine Klasse, um Resultate von Modelica-Simulationen als Line-Plots mit matplotlib zu plotten.\n\n\n'
         txt = txt + 'Verfuegbare Funktionen:\n-----------------------\n\n'
         txt = txt + '- settings():\t\tEinstellungen fuer den Plot einsehen\n\n'
+        txt = txt + '- showRes():\t\tUntersuchen eines .mat-Files. Zeigt alle vorhandenen Variablennamen.\n\n'
         txt = txt + '- add():\t\tLaedt eine neue Modelica-Variable in den Plotter\n\n'
         txt = txt + '- change(var):\t\tAendert einen Eintrag einer Modelica-Variable im Plotter. Um direkt\n\t\t\teine bestimmte Variable zu aendern, setze den Variablennamen als Argument.\n\n'
         txt = txt + '- remove(alle):\t\tLoescht eine existierende Modelica-Variable im Plotter. Um alle\n\t\t\tVariablen miteinander zu loeschen, setzte das Argument "alle" auf True.\n\n'
@@ -461,6 +477,7 @@ class piePlot(plotter):
         txt = txt + 'modelicaPost.piePlot ist eine Klasse, um Resultate von Modelica-Simulationen als Pie-Plots mit matplotlib zu plotten.\n\n\n'
         txt = txt + 'Verfuegbare Funktionen:\n-----------------------\n\n'
         txt = txt + '- settings():\t\tEinstellungen fuer den Plot einsehen\n\n'
+        txt = txt + '- showRes():\t\tUntersuchen eines .mat-Files. Zeigt alle vorhandenen Variablennamen.\n\n'
         txt = txt + '- add():\t\tLaedt eine neue Modelica-Variable in den Plotter\n\n'
         txt = txt + '- change(var):\t\tAendert einen Eintrag einer Modelica-Variable im Plotter. Um direkt\n\t\t\teine bestimmte Variable zu aendern, setze den Variablennamen als Argument.\n\n'
         txt = txt + '- remove(alle):\t\tLoescht eine existierende Modelica-Variable im Plotter. Um alle\n\t\t\tVariablen miteinander zu loeschen, setzte das Argument "alle" auf True.\n\n'
@@ -610,6 +627,7 @@ class stackPlot(plotter):
         txt = txt + 'modelicaPost.stackPlot ist eine Klasse, um Resultate von Modelica-Simulationen als Stack-Plots mit matplotlib zu plotten.\n\n\n'
         txt = txt + 'Verfuegbare Funktionen:\n-----------------------\n\n'
         txt = txt + '- settings():\t\tEinstellungen fuer den Plot einsehen\n\n'
+        txt = txt + '- showRes():\t\tUntersuchen eines .mat-Files. Zeigt alle vorhandenen Variablennamen.\n\n'
         txt = txt + '- add():\t\tLaedt eine neue Modelica-Variable in den Plotter\n\n'
         txt = txt + '- change(var):\t\tAendert einen Eintrag einer Modelica-Variable im Plotter. Um direkt\n\t\t\teine bestimmte Variable zu aendern, setze den Variablennamen als Argument.\n\n'
         txt = txt + '- remove(alle):\t\tLoescht eine existierende Modelica-Variable im Plotter. Um alle\n\t\t\tVariablen miteinander zu loeschen, setzte das Argument "alle" auf True.\n\n'
