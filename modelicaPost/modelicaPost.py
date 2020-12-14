@@ -18,7 +18,7 @@ class plotter:
         self.delete = False
 
         # variables to plot
-        # provide them as a dictionary {'label': {'matFile': matfile-path, 'path': path_inside_matfile, 'origUnit': simulation_unit, 'displayUnit': unit_to_display}, 'label2': {}, ...}
+        # provide them as a dictionary {'label': {'matFile': matfile-path, 'path': path_inside_matfile, 'origUnit': simulation_unit, 'displayUnit': unit_to_display, 'customGain': gain}, 'label2': {}, ...}
         self.variables = {}
 
         # stylesheet
@@ -34,6 +34,7 @@ class plotter:
         self.showLegend = False
         self.Legend_pos = 'bottom'
         self.Legend_ncol = 3
+
 
         # check if the correct python is used  --> buildingspy only works with 2.7
         import platform
@@ -115,7 +116,14 @@ class plotter:
             unit = r[path].unit
             orig_unit = r[path].unit
 
-        self.variables[var] = {'matFile': file, 'path': path, 'origUnit': orig_unit, 'displayUnit': unit}
+        print('Soll der Variable noch einen custom Gain hinzugefügt werden?')
+        antw = raw_input()
+        gain = 1
+        if (antw == 'Y' or antw == 'Yes' or antw == 'y' or antw == 'yes'):
+            print('Gib den gewünschten Gain ein.')
+            gain = num(raw_input())
+
+        self.variables[var] = {'matFile': file, 'path': path, 'origUnit': orig_unit, 'displayUnit': unit, 'customGain': gain}
 
         # Methode, um Anpassungen an Modelica-Variablen zu machen
 
@@ -381,6 +389,9 @@ class linePlot(plotter):
             except ValueError:
                 pass
 
+            # calculate the custom gain
+            y = self.variables[key]['customGain'] * y
+
             # Plot the variables
             if (self.variables[key]['displayUnit'] == axis_name[0]):
                 ax1.plot(t, y, label=str(key))
@@ -557,6 +568,9 @@ class piePlot(plotter):
             except ValueError:
                 pass
 
+            # calculate the custom gain
+            y = self.variables[key]['customGain'] * y
+
             # Append the variable data to the data-Array
             data.append(y)
 
@@ -714,6 +728,9 @@ class stackPlot(plotter):
                     return(False)
             except ValueError:
                 pass
+
+            # calculate the custom gain
+            y = self.variables[key]['customGain'] * y
 
             # save the variables
             if (n == 0):
