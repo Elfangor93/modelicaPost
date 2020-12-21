@@ -251,6 +251,42 @@ class plotter:
         else:
             plt.savefig(fileName, format='svg')
 
+    # Methode um Werte einer Variable zu holen
+    # Get the recorded values between 0 and 20 seconds: time=(0, 20)
+    # Get the interpolated values at 2 and 17 seconds: time=[2, 17]
+    # return values
+    def getVals(self, varName, time=None):
+        if varName in self.variables.keys():
+            from modelicares import SimRes
+            r = SimRes(self.variables[varName]['matFile'])
+            variable = r[self.variables[varName]['path']]
+            return variable.values(t=time)
+        else:
+            print('Die Variable '+varName+' existiert nicht.')
+
+    # Methode um den maximalen Wert einer Variable zu holen
+    # return values
+    def getMax(self, varName):
+        if varName in self.variables.keys():
+            from modelicares import SimRes
+            r = SimRes(self.variables[varName]['matFile'])
+            variable = r[self.variables[varName]['path']]
+            return variable.max()
+        else:
+            print('Die Variable '+varName+' existiert nicht.')
+
+    # Methode um den minimalen Wert einer Variable zu holen
+    # return values
+    def getMin(self, varName):
+        if varName in self.variables.keys():
+            from modelicares import SimRes
+            r = SimRes(self.variables[varName]['matFile'])
+            variable = r[self.variables[varName]['path']]
+            return variable.min()
+        else:
+            print('Die Variable '+varName+' existiert nicht.')
+        
+
 
 #-------------------------------------
 # Klasse, um Linen-Plots zu erstellen
@@ -390,7 +426,8 @@ class linePlot(plotter):
                 pass
 
             # calculate the custom gain
-            y = self.variables[key]['customGain'] * y
+            if 'customGain' in self.variables[key]:
+                y = self.variables[key]['customGain'] * y
 
             # Plot the variables
             if (self.variables[key]['displayUnit'] == axis_name[0]):
@@ -569,7 +606,8 @@ class piePlot(plotter):
                 pass
 
             # calculate the custom gain
-            y = self.variables[key]['customGain'] * y
+            if 'customGain' in self.variables[key]:
+                y = self.variables[key]['customGain'] * y
 
             # Append the variable data to the data-Array
             data.append(y)
@@ -730,7 +768,8 @@ class stackPlot(plotter):
                 pass
 
             # calculate the custom gain
-            y = self.variables[key]['customGain'] * y
+            if 'customGain' in self.variables[key]:
+                y = self.variables[key]['customGain'] * y
 
             # save the variables
             if (n == 0):
